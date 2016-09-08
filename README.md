@@ -10,6 +10,7 @@ python-anaconda2/201607
 emirge v0.60.3
 mothur v1.38.1 
 biopython v1.60
+ncbi-blast v2.2.29
 ```
 
 ## Workflow
