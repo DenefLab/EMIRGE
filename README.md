@@ -117,7 +117,8 @@ Step 7: recover sequence IDs left out of blast (python, bash)
 
 Step 8: create fasta files of desired sequence IDs (python)
 
-<code>python create_fastas_given_seqIDs.py ids.above.97 total.emirge.renamed.fasta otus.above.97.fasta</code>
+<code>python create_fastas_given_seqIDs.py ids.above.97 tot
+al.emirge.renamed.fasta otus.above.97.fasta</code>
 
 <code>python create_fastas_given_seqIDs.py ids.below.97.all total.emirge.renamed.fasta otus.below.97.fasta</code>
 
@@ -131,9 +132,9 @@ Only interested in unique seqs (otherwise you create non-existent sequence varia
 
 Classify
 
-<code>mothur "#classify.seqs(fasta=otus.below.97.unique.fasta, template=/scratch/vdenef_fluxm/rprops/databases/silva.nr_v123.align, taxonomy=/scratch/vdenef_fluxm/rprops/databases/silva.nr_v123.tax, method=wang, probs=T, processors=10, cutoff=80)"
+<code>mothur "#classify.seqs(fasta=otus.below.97.unique.fasta, template=/scratch/vdenef_fluxm/rprops/databases/silva.nr_v123.align, taxonomy=/scratch/vdenef_fluxm/rprops/databases/silva.nr_v123.tax, method=wang, probs=T, processors=10, cutoff=80)"</code>
 
-mothur "#classify.seqs(fasta=otus.above.97.unique.fasta, template=/scratch/vdenef_fluxm/rprops/databases/FreshTrain18Aug2016.fasta,  taxonomy=/scratch/vdenef_fluxm/rprops/databases/FreshTrain18Aug2016.taxonomy, method=wang, probs=T, processors=10, cutoff=0)"</code>
+<code>mothur "#classify.seqs(fasta=otus.above.97.unique.fasta,template=/scratch/vdenef_fluxm/rprops/databases/FreshTrain18Aug2016.fasta,  taxonomy=/scratch/vdenef_fluxm/rprops/databases/FreshTrain18Aug2016.taxonomy, method=wang, probs=T, processors=10, cutoff=0)"</code>
 
 Step 10: combine taxonomy files and names files
 
