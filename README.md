@@ -45,7 +45,7 @@ usearch -cluster_fast SILVA_123_SSURef_Nr99_tax_silva2.fasta -id 0.97 -centroids
 Replace non-standard base characters in reference database (script in same directory as database). This was run with python-anaconda2/latest - could also work with the 201607 but not sure yet
 
 ```R
-python fix_nonstandard_chars.py < SSURef_NR97_123_for_emirge.fasta > /scratch/vdenef_fluxm/rprops/databases/SSURef_NR97_123_for_emirge2.fasta</code>
+python fix_nonstandard_chars.py < SSURef_NR97_123_for_emirge.fasta > SSURef_NR97_123_for_emirge2.fasta
 ```
 
 Create bowtie-index for your reference database
@@ -96,7 +96,7 @@ makeblastdb -dbtype nucl -in FreshTrain18Aug2016.fasta -input_type fasta -parse_
 
 ### Step 3: Run blast and reformat output blast file
 ```R
-blastn -query total.emirge.renamed.fasta -task megablast -db /scratch/vdenef_fluxm/rprops/Emirge/BLAST/FWonly_18Aug2016custom.db -out custom.blast -outfmt 11 -max_target_seqs 5
+blastn -query total.emirge.renamed.fasta -task megablast -db FWonly_18Aug2016custom.db -out custom.blast -outfmt 11 -max_target_seqs 5
 
 blast_formatter -archive custom.blast -outfmt "6 qseqid pident length qlen qstart qend" -out otus.custom.blast.table
 ```
@@ -142,9 +142,9 @@ mothur "#unique.seqs(fasta=otus.above.97.fasta)"
 ```
 ###Step 10: classify sequences
 ```R
-mothur "#classify.seqs(fasta=otus.below.97.unique.fasta, template=/scratch/vdenef_fluxm/rprops/databases/silva.nr_v123.align, taxonomy=/scratch/vdenef_fluxm/rprops/databases/silva.nr_v123.tax, method=wang, probs=T, processors=10, cutoff=80)"
+mothur "#classify.seqs(fasta=otus.below.97.unique.fasta, template=silva.nr_v123.align, taxonomy=silva.nr_v123.tax, method=wang, probs=T, processors=10, cutoff=80)"
 
-mothur "#classify.seqs(fasta=otus.above.97.unique.fasta,template=/scratch/vdenef_fluxm/rprops/databases/FreshTrain18Aug2016.fasta,  taxonomy=/scratch/vdenef_fluxm/rprops/databases/FreshTrain18Aug2016.taxonomy, method=wang, probs=T, processors=10, cutoff=0)"
+mothur "#classify.seqs(fasta=otus.above.97.unique.fasta,template=FreshTrain18Aug2016.fasta,  taxonomy=FreshTrain18Aug2016.taxonomy, method=wang, probs=T, processors=10, cutoff=0)"
 ```
 Step 11: combine taxonomy files and names files
 ```R
