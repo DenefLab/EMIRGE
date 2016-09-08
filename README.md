@@ -5,7 +5,9 @@ This code copies only the fastq.gz in from the respective folders to the new loc
 For some samples there are fastq of different shotgun sequencing methods
 Run EMIRGE for both of these.
 
-<code>rsync -a --include '*/' --include '*.fastq.gz' --exclude '*' /nfs/vdenef-lab/Shared/Sequence_data/CSP_LM13/LM13_JGI_MetaG /scratch/vdenef_fluxm/rprops/metaG --progress</code>
+```R 
+rsync -a --include '*/' --include '*.fastq.gz' --exclude '*' /nfs/vdenef-lab/Shared/Sequence_data/CSP_LM13/LM13_JGI_MetaG /scratch/vdenef_fluxm/rprops/metaG --progress
+```
 
 These folders didn't have a fast.gz, only the fastaq
 
