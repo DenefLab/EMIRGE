@@ -9,6 +9,7 @@ Run EMIRGE for both of these.
 
 These folders didn't have a fast.gz, only the fastaq
 <code>cp /nfs/vdenef-lab/Shared/Sequence_data/CSP_LM13/LM13_JGI_MetaG/Fa13.BD.MM110.DN/8202.1.92752.GGACTCC-TATCCTC.fastq /scratch/vdenef_fluxm/rprops/metaG/LM13_JGI_MetaG/Fa13.BD.MM110.DN</code>
+
 <code>cp /nfs/vdenef-lab/Shared/Sequence_data/CSP_LM13/LM13_JGI_MetaG/Sp13.BD.MLB.SN/8199.1.94074.TGTGAA.anqdp.fastq /scratch/vdenef_fluxm/rprops/metaG/LM13_JGI_MetaG/Sp13.BD.MLB.SN</code>
 
 Unzip all .gz fastq in the folders
