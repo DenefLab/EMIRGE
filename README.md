@@ -95,7 +95,6 @@ makeblastdb -dbtype nucl -in FreshTrain18Aug2016.fasta -input_type fasta -parse_
 ```
 
 ### Step 3: Run blast and reformat output blast file
-Move outut to Taxonomy folder
 ```R
 blastn -query total.emirge.renamed.fasta -task megablast -db /scratch/vdenef_fluxm/rprops/Emirge/BLAST/FWonly_18Aug2016custom.db -out custom.blast -outfmt 11 -max_target_seqs 5
 
