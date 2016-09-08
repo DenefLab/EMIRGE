@@ -21,6 +21,7 @@ rsync -a --include '*/' --include '*.fastq.gz' --exclude '*' /nfs/vdenef-lab/Sha
 Unzip all .gz fastq in the folders. -r stands for recursive, i.e. enter all directories in the provided path and unzip stuff. Best to run this separately in a pbs script if possible, because it automatically parallelizes this over multiple cores, or run it as a background process with <code>nohup</code>.
 ```R
 gunzip -r /scratch/vdenef_fluxm/rprops/metaG/
+nohup gunzip -r /scratch/vdenef_fluxm/rprops/metaG/ &
 ```
 Extract forward and reverse fastq from original fasta (script comb_to_rever_forw_fastq.pbs).
 ```R
