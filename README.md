@@ -88,7 +88,7 @@ Step 2: make BLAST database file (blast)
 Taxonomy folder
 Step 3: Run blast and reformat output blast file
 
-<code>blastn -query total.emirge.renamed.fasta -task megablast -db /scratch/vdenef_fluxm/rprops/Emirge/BLAST/FWonly_18Aug2016custom.db -out custom.blast -outfmt 11 -max_target_seqs 5 system(blastn -query total.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta -task megablast -db /scratch/vdenef_fluxm/rprops/Emirge/BLAST/FWonly_18Aug2016custom.db -out custom.blast -outfmt 11 -max_target_seqs 5 -num_threads 40</code>
+<code>blastn -query total.emirge.renamed.fasta -task megablast -db /scratch/vdenef_fluxm/rprops/Emirge/BLAST/FWonly_18Aug2016custom.db -out custom.blast -outfmt 11 -max_target_seqs 5 </code>
 
 <code>blast_formatter -archive custom.blast -outfmt "6 qseqid pident length qlen qstart qend" -out otus.custom.blast.table</code>
 
@@ -100,21 +100,25 @@ This accounts for sequence length differences
 Step 5: Filter BLAST results
 
 <code>Rscript filter_seqIDs_by_pident.R otus.custom.blast.table.modified ids.above.97 97 TRUE</code>
+
 <code>Rscript filter_seqIDs_by_pident.R otus.custom.blast.table.modified ids.below.97 97 FALSE</code>
 
 Step 6: 
 
 <code>mkdir plots</code>
+
 <code>Rscript plot_blast_hit_stats.R otus.custom.blast.table.modified 97 plots</code>
 
 Step 7: recover sequence IDs left out of blast (python, bash)
 
 <code>python find_seqIDs_blast_removed.py total.emirge.renamed.fasta otus.custom.blast.table.modified ids.missing</code>
+
 <code>cat ids.below.97 ids.missing > ids.below.97.all</code>
 
 Step 8: create fasta files of desired sequence IDs (python)
 
 <code>python create_fastas_given_seqIDs.py ids.above.97 total.emirge.renamed.fasta otus.above.97.fasta</code>
+
 <code>python create_fastas_given_seqIDs.py ids.below.97.all total.emirge.renamed.fasta otus.below.97.fasta</code>
 
 Step 9: Screen for minimum length and max number of amibguous bases
@@ -122,16 +126,19 @@ Assign taxonomy to each fasta file
 Only interested in unique seqs (otherwise you create non-existent sequence variants)
 
 <code>mothur "#unique.seqs(fasta=otus.below.97.fasta)"</code>
+
 <code>mothur "#unique.seqs(fasta=otus.above.97.fasta)"</code>
 
 Classify
 
 <code>mothur "#classify.seqs(fasta=otus.below.97.unique.fasta, template=/scratch/vdenef_fluxm/rprops/databases/silva.nr_v123.align, taxonomy=/scratch/vdenef_fluxm/rprops/databases/silva.nr_v123.tax, method=wang, probs=T, processors=10, cutoff=80)"</code>
+
 <code>mothur "#classify.seqs(fasta=otus.above.97.unique.fasta, template=/scratch/vdenef_fluxm/rprops/databases/FreshTrain18Aug2016.fasta,  taxonomy=/scratch/vdenef_fluxm/rprops/databases/FreshTrain18Aug2016.taxonomy, method=wang, probs=T, processors=10, cutoff=0)"</code>
 
 Step 10: combine taxonomy files and names files
 
 <code>cat otus.above.97.unique.FreshTrain18Aug2016.wang.taxonomy otus.below.97.unique.nr_v123.wang.taxonomy > otus.97.taxonomy</code>
+
 <code>cat otus.above.97.names otus.below.97.names > otus.97.names</code>
 
 Run R script to create Sequence table (same format as OTU table)
