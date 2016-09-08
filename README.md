@@ -146,13 +146,13 @@ mothur "#classify.seqs(fasta=otus.below.97.unique.fasta, template=silva.nr_v123.
 
 mothur "#classify.seqs(fasta=otus.above.97.unique.fasta,template=FreshTrain18Aug2016.fasta,  taxonomy=FreshTrain18Aug2016.taxonomy, method=wang, probs=T, processors=10, cutoff=0)"
 ```
-Step 11: combine taxonomy files and names files
+###Step 11: combine taxonomy files and names files
 ```R
 cat otus.above.97.unique.FreshTrain18Aug2016.wang.taxonomy otus.below.97.unique.nr_v123.wang.taxonomy > otus.97.taxonomy
 
 cat otus.above.97.names otus.below.97.names > otus.97.names
 ```
-Step 12: Run R script to create Sequence table (same format as OTU table)
+###Step 12: Run R script to create Sequence table (same format as OTU table)
 ```R
 Rscript emirge_format.R mapped.reads.txt otus.97.taxonomy read.info.txt otus.97.names
 ```
