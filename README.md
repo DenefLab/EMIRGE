@@ -11,9 +11,11 @@ rsync -a --include '*/' --include '*.fastq.gz' --exclude '*' /nfs/vdenef-lab/Sha
 
 These folders didn't have a fast.gz, only the fastaq
 
-<code>cp /nfs/vdenef-lab/Shared/Sequence_data/CSP_LM13/LM13_JGI_MetaG/Fa13.BD.MM110.DN/8202.1.92752.GGACTCC-TATCCTC.fastq /scratch/vdenef_fluxm/rprops/metaG/LM13_JGI_MetaG/Fa13.BD.MM110.DN</code>
+```R 
+cp /nfs/vdenef-lab/Shared/Sequence_data/CSP_LM13/LM13_JGI_MetaG/Fa13.BD.MM110.DN/8202.1.92752.GGACTCC-TATCCTC.fastq /scratch/vdenef_fluxm/rprops/metaG/LM13_JGI_MetaG/Fa13.BD.MM110.DN
 
-<code>cp /nfs/vdenef-lab/Shared/Sequence_data/CSP_LM13/LM13_JGI_MetaG/Sp13.BD.MLB.SN/8199.1.94074.TGTGAA.anqdp.fastq /scratch/vdenef_fluxm/rprops/metaG/LM13_JGI_MetaG/Sp13.BD.MLB.SN</code>
+cp /nfs/vdenef-lab/Shared/Sequence_data/CSP_LM13/LM13_JGI_MetaG/Sp13.BD.MLB.SN/8199.1.94074.TGTGAA.anqdp.fastq /scratch/vdenef_fluxm/rprops/metaG/LM13_JGI_MetaG/Sp13.BD.MLB.SN
+```
 
 Unzip all .gz fastq in the folders
 Also make a READme file for this (and store copy on nfs drive)
