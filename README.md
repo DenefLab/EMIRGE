@@ -1,10 +1,18 @@
-## EMIRGE
+# EMIRGE
 Set of scripts/guidelines for EMIRGE analysis of metagenomic data.
 
-# The following script has been tested with the following dependencies
+## The following script has been tested with the following dependencies
 
+```R
+bowtie v1.0.0
+usearch v8.1
+python-anaconda2/201607
+emirge v0.60.3
+mothur v1.38.1 
+biopython v1.60
+```
 
-
+## Workflow
 Copy metaG data from nfs to scratch. This code copies only the fastq.gz in from the respective folders to the new location. 
 ```R 
 rsync -a --include '*/' --include '*.fastq.gz' --exclude '*' /nfs/vdenef-lab/Shared/Sequence_data/CSP_LM13/LM13_JGI_MetaG /scratch/vdenef_fluxm/rprops/metaG --progress
