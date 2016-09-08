@@ -1,49 +1,38 @@
-# EMIRGE
-Set of scripts/guidelines for EMIRGE analysis of metagenomic data
-Copy metaG data from nfs to scratch
-This code copies only the fastq.gz in from the respective folders to the new location
-For some samples there are fastq of different shotgun sequencing methods
-Run EMIRGE for both of these.
+## EMIRGE
+Set of scripts/guidelines for EMIRGE analysis of metagenomic data.
 
+# The following script has been tested with the following dependencies
+
+
+
+Copy metaG data from nfs to scratch. This code copies only the fastq.gz in from the respective folders to the new location. 
 ```R 
 rsync -a --include '*/' --include '*.fastq.gz' --exclude '*' /nfs/vdenef-lab/Shared/Sequence_data/CSP_LM13/LM13_JGI_MetaG /scratch/vdenef_fluxm/rprops/metaG --progress
 ```
 
-These folders didn't have a fast.gz, only the fastaq
-
-```R 
-cp /nfs/vdenef-lab/Shared/Sequence_data/CSP_LM13/LM13_JGI_MetaG/Fa13.BD.MM110.DN/8202.1.92752.GGACTCC-TATCCTC.fastq /scratch/vdenef_fluxm/rprops/metaG/LM13_JGI_MetaG/Fa13.BD.MM110.DN
-
-cp /nfs/vdenef-lab/Shared/Sequence_data/CSP_LM13/LM13_JGI_MetaG/Sp13.BD.MLB.SN/8199.1.94074.TGTGAA.anqdp.fastq /scratch/vdenef_fluxm/rprops/metaG/LM13_JGI_MetaG/Sp13.BD.MLB.SN
-```
-
-Unzip all .gz fastq in the folders
-Also make a READme file for this (and store copy on nfs drive)
--r stands for recursive, i.e. enter all directories in the provided path and unzip stuff
-Best to run this separately in a pbs script because it seems to automatically parallelize this over multiple CPUs
+Unzip all .gz fastq in the folders. -r stands for recursive, i.e. enter all directories in the provided path and unzip stuff. Best to run this separately in a pbs script if possible, because it automatically parallelizes this over multiple cores, or run it as a background process with <code>nohup</code>.
 ```R
 gunzip -r /scratch/vdenef_fluxm/rprops/metaG/
 ```
-Extract forward and reverse fastq from original fasta (script comb_to_rever_forw_fastq)
+Extract forward and reverse fastq from original fasta (script comb_to_rever_forw_fastq.pbs).
 ```R
 qsub comb_to_rever_forw_fastq.pbs
 ```
-Copy the fastq of your samples to the correct directory (example for one sample)
+Copy the fastq of your samples to the correct directory (example for one sample).
 
 ```R
 cp /nfs/vdenef-lab/Shared/Sequence_data/CSP_LM13/LM13_JGI_MetaG/Fa13.BD.MM110.DN/Fa13.BD.MM110.DN.10Mpairs.PE.2.fastq /scratch/vdenef_fluxm/rprops/metaG
 
 cp /nfs/vdenef-lab/Shared/Sequence_data/CSP_LM13/LM13_JGI_MetaG/Fa13.BD.MM110.DN/Fa13.BD.MM110.DN.10Mpairs.PE.1.fastq /scratch/vdenef_fluxm/rprops/metaG
 ```
-Cluster silva_v123 NR99 database to 97 % with usearch
-In the original article they also prune the database from sequences with a length less than 1200 and more than 1900
+
+Cluster silva_v123 NR99 database to 97 % with usearch. In the original article they also prune the database from sequences with a length less than 1200 and more than 1900.
 
 ```R
 usearch -cluster_fast SILVA_123_SSURef_Nr99_tax_silva2.fasta -id 0.97 -centroids SSURef_NR97_123_for_emirge.fasta -uc SSURef_NR97_123_for_emirge.clusters.uc
 ```
 
-Replace non-standard base characters in reference database (script in same directory as database)
-This was run with python-anaconda2/latest - could also work with the 201607 but not sure yet
+Replace non-standard base characters in reference database (script in same directory as database). This was run with python-anaconda2/latest - could also work with the 201607 but not sure yet
 
 ```R
 python fix_nonstandard_chars.py < SSURef_NR97_123_for_emirge.fasta > /scratch/vdenef_fluxm/rprops/databases/SSURef_NR97_123_for_emirge2.fasta</code>
