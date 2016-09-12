@@ -148,7 +148,7 @@ mothur "#unique.seqs(fasta=otus.above.97.good.fasta)"
 ```R
 mothur "#classify.seqs(fasta=otus.below.97.good.unique.fasta, template=silva.nr_v123.align, taxonomy=silva.nr_v123.tax, method=wang, probs=T, processors=10, cutoff=80)"
 
-mothur "#classify.seqs(fasta=otus.above.97.good.unique.fasta,template=FreshTrain18Aug2016.fasta,  taxonomy=FreshTrain18Aug2016.taxonomy, method=wang, probs=T, processors=10, cutoff=0)"
+mothur "#classify.seqs(fasta=otus.above.97.good.unique.fasta, template=FreshTrain18Aug2016.fasta,  taxonomy=FreshTrain18Aug2016.taxonomy, method=wang, probs=T, processors=10, cutoff=0)"
 ```
 ###Step 12: combine taxonomy files and names files
 ```R
