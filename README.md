@@ -133,24 +133,27 @@ python create_fastas_given_seqIDs.py ids.above.97 total.emirge.renamed.fasta otu
 
 python create_fastas_given_seqIDs.py ids.below.97.all total.emirge.renamed.fasta otus.below.97.fasta
 ```
-
-###Step 9: extract unique sequences
+###Step 9: remove short, long sequences and those with ambiguous bases
 ```R
-mothur "#unique.seqs(fasta=otus.below.97.fasta)"
-
-mothur "#unique.seqs(fasta=otus.above.97.fasta)"
+mothur "#screen.seqs(fasta=otus.below.97.fasta,maxambig=0,minlength=1000,maxlength=1700)"
+mothur "#screen.seqs(fasta=otus.above.97.fasta,maxambig=0,minlength=1000,maxlength=1700)"
 ```
-###Step 10: classify sequences
-```R
-mothur "#classify.seqs(fasta=otus.below.97.unique.fasta, template=silva.nr_v123.align, taxonomy=silva.nr_v123.tax, method=wang, probs=T, processors=10, cutoff=80)"
 
-mothur "#classify.seqs(fasta=otus.above.97.unique.fasta,template=FreshTrain18Aug2016.fasta,  taxonomy=FreshTrain18Aug2016.taxonomy, method=wang, probs=T, processors=10, cutoff=0)"
+###Step 10: extract unique sequences
+```R
+mothur "#unique.seqs(fasta=otus.below.97.good.fasta)"
+mothur "#unique.seqs(fasta=otus.above.97.good.fasta)"
 ```
-###Step 11: combine taxonomy files and names files
+###Step 11: classify sequences
 ```R
-cat otus.above.97.unique.FreshTrain18Aug2016.wang.taxonomy otus.below.97.unique.nr_v123.wang.taxonomy > otus.97.taxonomy
+mothur "#classify.seqs(fasta=otus.below.97.good.unique.fasta, template=silva.nr_v123.align, taxonomy=silva.nr_v123.tax, method=wang, probs=T, processors=10, cutoff=80)"
 
-cat otus.above.97.names otus.below.97.names > otus.97.names
+mothur "#classify.seqs(fasta=otus.above.97.good.unique.fasta,template=FreshTrain18Aug2016.fasta,  taxonomy=FreshTrain18Aug2016.taxonomy, method=wang, probs=T, processors=10, cutoff=0)"
+```
+###Step 12: combine taxonomy files and names files
+```R
+cat otus.above.97.good.unique.FreshTrain18Aug2016.wang.taxonomy otus.below.97.good.unique.nr_v123.wang.taxonomy > otus.97.taxonomy
+cat otus.above.97.good.names otus.below.97.good.names > otus.97.names
 ```
 ###Step 12: Run R script to create Sequence table (same format as OTU table)
 ```R
