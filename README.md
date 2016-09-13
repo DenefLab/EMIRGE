@@ -1,7 +1,7 @@
 # EMIRGE
 Set of scripts/guidelines for EMIRGE analysis of metagenomic data.
 
-## The following script has been tested with the following dependencies
+## The script has been tested with the following dependencies
 
 ```R
 bowtie v1.0.0
