@@ -28,13 +28,6 @@ Extract forward and reverse fastq from original fasta (script comb_to_rever_forw
 ```R
 qsub comb_to_rever_forw_fastq.pbs
 ```
-Copy the fastq of your samples to the correct directory (example for one sample).
-
-```R
-cp /nfs/vdenef-lab/Shared/Sequence_data/CSP_LM13/LM13_JGI_MetaG/Fa13.BD.MM110.DN/Fa13.BD.MM110.DN.10Mpairs.PE.2.fastq /scratch/vdenef_fluxm/rprops/metaG
-
-cp /nfs/vdenef-lab/Shared/Sequence_data/CSP_LM13/LM13_JGI_MetaG/Fa13.BD.MM110.DN/Fa13.BD.MM110.DN.10Mpairs.PE.1.fastq /scratch/vdenef_fluxm/rprops/metaG
-```
 
 Cluster silva_v123 NR99 database to 97 % with usearch. In the original article they also prune the database from sequences with a length less than 1200 and more than 1900.
 
