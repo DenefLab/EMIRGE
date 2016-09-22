@@ -1,0 +1,23 @@
+####  PBS preamble
+#PBS -N emirge
+#PBS -M rprops@umich.edu
+#PBS -m abe
+
+#PBS -l nodes=1:ppn=10,mem=250gb,walltime=20:00:00:00
+#PBS -V
+
+#PBS -A vdenef_fluxm
+#PBS -l qos=flux
+#PBS -q fluxm
+####  End PBS preamble
+
+#  Show list of CPUs you ran on, if you're running under PBS
+if [ -n "$PBS_NODEFILE" ]; then cat $PBS_NODEFILE; fi
+
+#  Change to the directory you submitted from
+if [ -n "$PBS_O_WORKDIR" ]; then cd $PBS_O_WORKDIR; fi
+pwd
+
+# load bowtie, usearch and python modules
+cd $PBS_O_WORKDIR
+emirge.py $PBS_O_WORKDIR -1 *.1.fastq -2 *.2.fastq -f /scratch/vdenef_fluxm/rprops/Emirge/SSURef_NR97_123_for_emirge2.fasta -b /scratch/vdenef_fluxm/rprops/Emirge/SSU_candidate_db_btindex --phred33 -i 200 -s 50 -l 150 -j 1.0 -a 10 -n 65
