@@ -45,7 +45,7 @@ Create bowtie-index for your reference database
 ```R
 bowtie-build SSURef_NR97_123_for_emirge2.fasta SSU_candidate_db_btindex
 ```
-Make sure these scripts are in the directory where all your sample folders are. Run EMIRGE (see batch scripts for parallelizing). Make sure that --Phred33 is present (this is mandatory for new fastq files from Illumina). Takes approx. 20-40h on 10 cores per sample for 65 iterations. Running with -j 1.0 (thus 100 % identity) which is different from the 0.97 that others use (unique seqs). There is also little point in parallelizing beyond 10 - 12 cores because of the dependency on usearch (uses 8 cores). Standard settings are mean insert size of 200 bp (-i option) with standard deviation of 50 bp (-s option) and max. read length of 150 (-l option).
+Make sure these scripts are in the directory where all your sample folders are. Run EMIRGE (see batch scripts for parallelizing). Make sure that --Phred33 is present (this is mandatory for new fastq files from Illumina). Takes approx. 20-40h on 10 cores per sample for 65 iterations. Running with -j 1.0 (thus 100 % identity) which is different from the 0.97 that others use (unique seqs). There is also little point in parallelizing beyond 10 - 12 cores because of the dependency on usearch (uses 8 cores). Standard settings are mean insert size of 200 bp (-i option) with standard deviation of 50 bp (-s option) and max. read length of 150 (-l option). Adjust these settings in emirge.pbs if so desired/required.
 ```R
 bash -x Batch_01.sh
 bash -x Batch_02.sh
