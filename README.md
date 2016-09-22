@@ -153,4 +153,5 @@ cat otus.above.97.good.unique.fasta otus.below.97.good.unique.fasta > final.otu.
 ```R
 Rscript emirge_format.R mapped.reads.txt otus.97.taxonomy read.info.txt otus.97.names
 ```
+A histogram of the length distribution of your reconstructed sequencs is also automatically generated.
 ![length_distribution](https://cloud.githubusercontent.com/assets/19682548/18751134/ee91d996-80ab-11e6-8ca5-ecad0f6c7520.png)
