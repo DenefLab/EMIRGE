@@ -113,6 +113,9 @@ mkdir plots
 
 Rscript plot_blast_hit_stats.R otus.custom.blast.table.modified 97 plots
 ```
+Plot is generated displaying the effect of correcting the Pid for length variations.
+![blast_hits_used_for_pidents_0-100](https://cloud.githubusercontent.com/assets/19682548/18751230/3dc50a56-80ac-11e6-9cee-d68a58e69096.png)
+
 ###Step 7: recover sequence IDs left out of blast (python, bash)
 
 ```R
